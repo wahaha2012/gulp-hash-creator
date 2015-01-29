@@ -1,0 +1,36 @@
+{
+  "name": "gulp-hash-creator",
+  "version": "0.1.0",
+  "description": "gulp hash creator for files and string",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wahaha2012/gulp-hash-creator.git"
+  },
+  "keywords": [
+    "gulp",
+    "hash",
+    "md5",
+    "sha1",
+    "creator"
+  ],
+  "author": "wxwdesign@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wahaha2012/gulp-hash-creator/issues"
+  },
+  "homepage": "https://github.com/wahaha2012/gulp-hash-creator",
+  "dependencies": {
+    "fs": "0.0.2",
+    "through": "^2.3.6",
+    "crypto": "0.0.3",
+    "path": "^0.11.14",
+    "lodash": "^3.0.0",
+    "slash": "^1.0.0",
+    "mkdirp": "^0.5.0",
+    "cli-color": "^0.3.2"
+  }
+}
