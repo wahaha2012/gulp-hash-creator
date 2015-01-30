@@ -1,5 +1,5 @@
 var gulp = require("gulp");
-var hashCreator = require("../hash.js");
+var hashCreator = require("../bin/hash.js");
 
 var template = 'var hashList = {\n\
         {{{hashList}}}\n\
