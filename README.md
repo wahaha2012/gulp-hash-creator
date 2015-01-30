@@ -78,7 +78,7 @@ config : {
 {String}(default:'md5') ['md5'/'sha1'] hash algorithms name
 
 > output         
-{String}(defualt:'md5-hash-list') file name which use to output hash values
+{String}(default:'md5-hash-list') file name which use to output hash values
 
 > outputTempate  
 {String} string template for join hash values, the placeholder is {{{hashList}}}
