@@ -59,7 +59,7 @@ config : {
     forceUpdate: true,
     length:6,
     hashName: 'md5',
-    output: 'version.js',
+    output: 'hash-list.js',
     outputTemplate: "Hash List is:\n {{{hashList}}}",
     delimiter: "",
     format: function (obj) {
