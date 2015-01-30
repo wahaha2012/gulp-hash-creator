@@ -69,23 +69,23 @@ config : {
 
 //All config is optional
 > forceUpdate    
-//{Boolean}(default:false) force overwrite output file
+{Boolean}(default:false) force overwrite output file
 
 > length         
-//{Integer} hash value length
+{Integer} hash value length
 
 > hashName       
-//{String:}(default:'md5') ['md5'/'sha1'] hash algorithms name
+{String}(default:'md5') ['md5'/'sha1'] hash algorithms name
 
 > output         
-//{String}(defualt:'md5-hash-list') file name which use to output hash values
+{String}(defualt:'md5-hash-list') file name which use to output hash values
 
 > outputTempate  
-//{String} string template for join hash values, the placeholder is {{{hashList}}}
+{String} string template for join hash values, the placeholder is {{{hashList}}}
 
 > delimiter
-//{String} add delimiter to separate each hash values
+{String} add delimiter to separate each hash values
 
 > format         
-//{Function}(default:'file hash') format original hash array values to string
+{Function}(default:'file hash') format original hash array values to string
 ```
