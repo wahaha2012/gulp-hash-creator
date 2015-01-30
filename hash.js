@@ -1,25 +1,5 @@
 /**
  * Author: wxwdesign@gmail.com
- *
- * Usage:
- * var hashCreator = require("gulp-hash-creator");
- * var hash = hashCreator({
-        content:"test content",
-        length: 16
-    });
-    console.log(hash);
-
-    gulp.src("js/*.js")
-        .pipe(hashCreator({
-            forceUpdate: true,
-            length:16,
-            hashName: 'sha1',
-            output: 'version.js',
-            //outputTemplate: "",
-            format: function (obj) {
-                return '"' + obj.path + '": "' + obj.path +"?v"+ obj.hash + '",\n';
-            }
-        }));
  */
 
 var crypto = require('crypto');
@@ -37,14 +17,15 @@ var error = clc.red.bold,
     notice = clc.cyan;
     warn = clc.yellow;
 
-var config = {
+var defaultConfig = {
         hashName: 'md5',
         dest: process.cwd(),
-        delimiter: " ",
+        delimiter: "",
         format: function (obj) {
-            return obj.path + config.delimiter + obj.hash + "\n";
+            return obj.path + " " + obj.hash + "\n";
         }
-    },
+    }, 
+    config = {},
     hashes = [],
     hashesFilePath;
 
@@ -70,7 +51,7 @@ function readFile(file){
 
 function writeHashList(){
     var lines = _.map(hashes, config.format),
-        bufferString = lines.join("\t\t\t");
+        bufferString = lines.join(config.delimiter);
 
     if(config.outputTemplate){
         bufferString = config.outputTemplate.replace("{{{hashList}}}", bufferString);
@@ -114,20 +95,21 @@ function typeOf(obj,type) {
 }
 
 module.exports = function(options){
-    config = _.extend({}, config, options);
+    config = _.extend({}, defaultConfig, options);
 
-    config.output = config.output || config.hashName.toUpperCase() + "SUMS";
+    config.output = config.output || config.hashName + "-hash-list";
     hashesFilePath = path.resolve(config.dest, config.output);
 
-    console.log("*** gulp hash start ***");
-    console.log("*** hash type: "+notice(config.hashName)+" ***");
-    config.length && console.log("*** hash length: "+notice(config.length)+" ***");
+    // console.log("*** gulp hash start ***");
+    // console.log("*** hash algorithms: "+notice(config.hashName)+", hash length:"+notice(config.length)+"  ***");
+    console.log("*** hash algorithms: "+notice(config.hashName)+", hash length:"+notice(config.length)+" ***");
+    // config.length && console.log("*** hash length: "+notice(config.length)+" ***");
 
     if(typeOf(config.content)!=='undefined'){
-        console.log(notice("hash content input"));
+        console.log(warn("hash string content"));
         return calcHash(config);
     }else{
-        console.log(notice("hash file stream"));
+        console.log(warn("hash files stream"));
         return through(readFile, writeHashList);
     }
 };

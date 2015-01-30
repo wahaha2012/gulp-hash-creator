@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/wahaha2012/gulp-hash-creator",
   "dependencies": {
-    "fs": "0.0.2",
     "through": "^2.3.6",
     "crypto": "0.0.3",
     "path": "^0.11.14",
