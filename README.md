@@ -32,6 +32,21 @@ gulp.task("hashFiles", function(){
     return gulp.src("./*.*")
             .pipe(hashCreator());
 });
+
+//hash string content use as constructor
+gulp.task("hashString", function(){
+    var value = new hashCreator({
+        content:"test content"
+    });
+
+    console.log(value.hashData.hash);
+});
+
+//hash file use as constructor
+gulp.task("hashSomeFiles", function(){
+    return gulp.src("./*.*")
+            .pipe(new hashCreator());
+});
 ```
 
 For normal javascript
@@ -51,8 +66,11 @@ console.log(hashString("test content"));
 
 # API #
 ```javascript
-//main function
+//use as function
 hashCreator(config);
+
+//use as constructor
+new hashCreator(config);
 
 //hash config
 config : {
@@ -62,6 +80,7 @@ config : {
     output: 'hash-list.js',
     outputTemplate: "Hash List is:\n {{{hashList}}}",
     delimiter: "",
+    log: true,
     format: function (obj) {
         return '"' + obj.path + '": "' + obj.path +"?v"+ obj.hash + '"';
     }
@@ -86,6 +105,9 @@ config : {
 > delimiter
 {String} add delimiter to separate each hash values
 
+> log
+{Boolean}{default:true} whether display hash log
+
 > format         
-{Function}(default:'file hash') format original hash array values to string
+{Function}(default:obj.path + " " + obj.hash + "\n") format original hash array values to string
 ```
