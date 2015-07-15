@@ -30,7 +30,7 @@ function hashCreator(options){
     this._data.hashes = [];
 
     // this.config.log && console.log("*** gulp hash start ***");
-    this.config.log && console.log("*** hash algorithms: "+cliColors.notice(this.config.hashName)+", hash length:"+cliColors.notice(this.config.length)+" ***");
+    this.config.log && console.log("*** algorithms: "+cliColors.notice(this.config.hashName)+", length: "+cliColors.notice(this.config.length)+", output: "+cliColors.notice(this.config.output)+" ***");
 
     if(utils.typeOf(this.config.content)!=='undefined'){
         this.config.log && console.log(cliColors.warn("hash string content"));
