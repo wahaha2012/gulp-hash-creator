@@ -21,18 +21,23 @@ var defaultConfig = {
     };
 
 function hashCreator(options){
-    var self = this;
+    var self = this,
+        isHashString = utils.typeOf(options.content)!=='undefined';
     this.config = _.extend({}, defaultConfig, options);
+    if(isHashString && !options.output){
+        this.config.output = '-';
+    }else{
+        this.config.output = this.config.output || this.config.hashName + "-hash-list";
+    }
+    
     this._data = {};
-
-    this.config.output = this.config.output || this.config.hashName + "-hash-list";
     this._data.hashesFilePath = path.resolve(this.config.dest, this.config.output);
     this._data.hashes = [];
 
     // this.config.log && console.log("*** gulp hash start ***");
     this.config.log && console.log("*** algorithms: "+cliColors.notice(this.config.hashName)+", length: "+cliColors.notice(this.config.length)+", output: "+cliColors.notice(this.config.output)+" ***");
 
-    if(utils.typeOf(this.config.content)!=='undefined'){
+    if(isHashString){
         this.config.log && console.log(cliColors.warn("hash string content"));
         this.hashData = {path:this.config.content, hash:utils.calcHash(this.config)};
         return this.hashData.hash;
